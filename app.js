@@ -55,16 +55,28 @@
 
 const express = require("express");
 const cors = require("cors");
+const logger = require("morgan");
 
 const products = require("./products");
 
 const app = express();
 
 app.use(cors());
-
-app.get("/products", (req, res) => {
-  res.json(products);
-  // res.send(products);
-});
+const formatsLogger = app.get("env") === "development" ? "dev" : "short";
+app.use(logger(formatsLogger));
 
 app.listen(4000);
+
+// app.get("/api/v1/products", (req, res) => {
+//   res.json(products);
+//   // res.send(products);
+// });
+
+// app.get("/api/v2/products", (req, res) => {
+//   res.json(products.slice(0, 10));
+// });
+
+// app.get("products/:id", (req, res) => {
+//   const { id } = req.params;
+//   const product = products.find();
+// });
