@@ -14,3 +14,9 @@ app.use(logger(formatsLogger));
 app.use("/api/v1/products", api.products);
 
 app.listen(4000);
+
+// 1 вариант деструктуризауции порта с присвоением
+// const { PORT = 3000 } = process.env;
+
+// 2 вариант, тоже самое что и первый, но хуже
+// const PORT = process.env.PORT || 3000;
